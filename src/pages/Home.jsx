@@ -1,17 +1,16 @@
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+
+import Hero from "../features/landing/Hero";
+
 export default function Home() {
   return (
-    <main>
-      <section>
-        <h1>GuestLens</h1>
+    <>
+      <Navbar />
 
-        <p>
-          See your wedding through every guest's eyes.
-        </p>
+      <Hero />
 
-        <button>
-          Create Event
-        </button>
-      </section>
-    </main>
+      <Footer />
+    </>
   );
 }
