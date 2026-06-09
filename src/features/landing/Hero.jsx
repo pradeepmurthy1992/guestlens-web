@@ -1,23 +1,29 @@
-import Button from "../../components/ui/Button";
 import Container from "../../components/layout/Container";
+import Button from "../../components/ui/Button";
+import Badge from "../../components/ui/Badge";
 
 export default function Hero() {
   return (
     <section
       style={{
-        padding: "120px 0",
+        padding: "140px 0",
       }}
     >
       <Container>
         <div
           style={{
-            maxWidth: "800px",
+            maxWidth: "900px",
           }}
         >
+          <Badge>
+            Wedding Memory Platform
+          </Badge>
+
           <h1
             style={{
-              fontSize: "4rem",
-              lineHeight: 1.1,
+              fontSize: "5rem",
+              lineHeight: 1.05,
+              marginTop: "24px",
               marginBottom: "24px",
             }}
           >
@@ -28,16 +34,29 @@ export default function Hero() {
             style={{
               color: "#A1A1AA",
               fontSize: "1.2rem",
+              maxWidth: "700px",
               marginBottom: "32px",
             }}
           >
-            Collect guest photos, videos, wishes and
+            GuestLens helps couples collect guest
+            photos, videos, wishes and professional
             memories in one beautiful place.
           </p>
 
-          <Button>
-            Create Event
-          </Button>
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+            }}
+          >
+            <Button>
+              Create Event
+            </Button>
+
+            <Button>
+              Watch Demo
+            </Button>
+          </div>
         </div>
       </Container>
     </section>
