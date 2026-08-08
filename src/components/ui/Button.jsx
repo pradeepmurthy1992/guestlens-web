@@ -1,29 +1,32 @@
+import { forwardRef } from "react";
 
-export default function Button({
-  children,
-  onClick,
-  type = "button",
-}) {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      style={{
-        background: "#D4AF37",
-        color: "#000",
+const variants = {
+  primary:
+    "bg-gold text-bg hover:bg-gold-soft border border-transparent",
+  secondary:
+    "bg-transparent text-ink border border-border hover:border-gold-dim hover:bg-surface",
+  ghost:
+    "bg-transparent text-muted hover:text-ink border border-transparent",
+};
 
-        border: "none",
+const sizes = {
+  md: "h-11 px-5 text-sm",
+  lg: "h-13 px-7 text-[15px]",
+};
 
-        borderRadius: "12px",
+const Button = forwardRef(
+  ({ as: Tag = "button", variant = "primary", size = "md", className = "", children, ...props }, ref) => {
+    return (
+      <Tag
+        ref={ref}
+        className={`inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-colors duration-200 ${variants[variant]} ${sizes[size]} ${className}`}
+        {...props}
+      >
+        {children}
+      </Tag>
+    );
+  }
+);
 
-        padding: "14px 24px",
-
-        fontWeight: 600,
-
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </button>
-  );
-}
+Button.displayName = "Button";
+export default Button;

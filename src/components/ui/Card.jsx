@@ -1,17 +1,7 @@
-export default function Card({
-  children,
-}) {
+export default function Card({ className = "", children }) {
   return (
     <div
-      style={{
-        background: "#121214",
-
-        border: "1px solid #242428",
-
-        borderRadius: "20px",
-
-        padding: "24px",
-      }}
+      className={`rounded-2xl border border-border bg-surface p-8 transition-colors duration-200 hover:border-border-soft hover:bg-surface-2 ${className}`}
     >
       {children}
     </div>

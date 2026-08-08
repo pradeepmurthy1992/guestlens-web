@@ -1,22 +1,9 @@
-export default function Badge({
-  children,
-}) {
+export default function Badge({ children, className = "" }) {
   return (
     <span
-      style={{
-        display: "inline-block",
-
-        background: "rgba(212,175,55,0.15)",
-
-        color: "#D4AF37",
-
-        padding: "8px 12px",
-
-        borderRadius: "999px",
-
-        fontSize: "0.85rem",
-      }}
+      className={`inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium tracking-wide text-muted ${className}`}
     >
+      <span className="h-1.5 w-1.5 rounded-full bg-gold" />
       {children}
     </span>
   );
