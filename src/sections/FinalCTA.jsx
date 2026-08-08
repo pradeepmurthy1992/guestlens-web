@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "../components/ui/Container";
 import Button from "../components/ui/Button";
 
@@ -18,7 +19,7 @@ export default function FinalCTA() {
             <p className="max-w-md text-base leading-relaxed text-muted">
               Free to create. Add your photographer and invite guests whenever you're ready.
             </p>
-            <Button as="a" href="#" variant="primary" size="lg">
+            <Button as={Link} to="/create-event" variant="primary" size="lg">
               Create your event
             </Button>
           </div>

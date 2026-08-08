@@ -1,4 +1,5 @@
 import { Camera, Mic, Video } from "lucide-react";
+import { Link } from "react-router-dom";
 import Container from "../components/ui/Container";
 import Button from "../components/ui/Button";
 import Badge from "../components/ui/Badge";
@@ -26,7 +27,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button as="a" href="#final-cta" variant="primary" size="lg">
+            <Button as={Link} to="/create-event" variant="primary" size="lg">
               Create your event
             </Button>
             <Button as="a" href="#how-it-works" variant="secondary" size="lg">

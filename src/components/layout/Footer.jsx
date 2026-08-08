@@ -1,17 +1,29 @@
+import { Link } from "react-router-dom";
 import Container from "../ui/Container";
 
 const columns = [
   {
     title: "Product",
-    links: ["How it works", "Features", "Pricing", "For photographers"],
+    links: [
+      { label: "How it works", href: "/#how-it-works" },
+      { label: "Features", href: "/#features" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "For photographers", href: "mailto:hello@guestlens.app" },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Contact"],
+    links: [
+      { label: "About", href: "/#how-it-works" },
+      { label: "Contact", href: "mailto:hello@guestlens.app" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy", "Terms"],
+    links: [
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+    ],
   },
 ];
 
@@ -31,15 +43,25 @@ export default function Footer() {
             <span className="text-xs font-medium uppercase tracking-[0.15em] text-muted-2">
               {col.title}
             </span>
-            {col.links.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-sm text-muted transition-colors hover:text-ink"
-              >
-                {link}
-              </a>
-            ))}
+            {col.links.map((link) =>
+              link.to ? (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className="text-sm text-muted transition-colors hover:text-ink"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-muted transition-colors hover:text-ink"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
         ))}
       </Container>

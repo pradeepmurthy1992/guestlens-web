@@ -1,6 +1,7 @@
 import { QrCode, Upload, Sparkles } from "lucide-react";
 import Container from "../components/ui/Container";
 import SectionHeading from "../components/ui/SectionHeading";
+import Reveal from "../components/ui/Reveal";
 
 const steps = [
   {
@@ -27,13 +28,15 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 md:py-32">
       <Container className="flex flex-col gap-16">
-        <SectionHeading
-          eyebrow="How it works"
-          title="Three steps between the wedding and the memory."
-          description="Built to stay out of the way on the day itself."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="How it works"
+            title="Three steps between the wedding and the memory."
+            description="Built to stay out of the way on the day itself."
+          />
+        </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <Reveal className="grid gap-8 md:grid-cols-3">
           {steps.map((step, i) => (
             <div key={step.title} className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
@@ -48,7 +51,7 @@ export default function HowItWorks() {
               <p className="text-sm leading-relaxed text-muted">{step.description}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

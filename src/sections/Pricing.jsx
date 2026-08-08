@@ -1,8 +1,10 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import Container from "../components/ui/Container";
 import SectionHeading from "../components/ui/SectionHeading";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
+import Reveal from "../components/ui/Reveal";
 
 const plans = [
   {
@@ -12,6 +14,7 @@ const plans = [
     description: "See how it feels before your wedding day.",
     features: ["1 event", "Up to 200 photos", "30 days of storage", "GuestLens watermark"],
     cta: "Start for free",
+    to: "/create-event",
     variant: "secondary",
   },
   {
@@ -27,6 +30,7 @@ const plans = [
       "Full archive download",
     ],
     cta: "Create your event",
+    to: "/create-event",
     variant: "primary",
     featured: true,
   },
@@ -42,6 +46,7 @@ const plans = [
       "Event analytics",
     ],
     cta: "Talk to us",
+    href: "mailto:hello@guestlens.app",
     variant: "secondary",
   },
 ];
@@ -50,13 +55,15 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-24 md:py-32">
       <Container className="flex flex-col gap-16">
-        <SectionHeading
-          eyebrow="Pricing"
-          title="Simple pricing, priced per wedding."
-          description="Launch pricing — subject to change as we grow."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Pricing"
+            title="Simple pricing, priced per wedding."
+            description="Launch pricing — subject to change as we grow."
+          />
+        </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <Reveal as="div" className="grid gap-6 md:grid-cols-3">
           {plans.map((plan) => (
             <Card
               key={plan.name}
@@ -86,8 +93,7 @@ export default function Pricing() {
               </ul>
 
               <Button
-                as="a"
-                href="#final-cta"
+                {...(plan.to ? { as: Link, to: plan.to } : { as: "a", href: plan.href })}
                 variant={plan.variant}
                 size="md"
                 className="mt-8 w-full"
@@ -96,7 +102,7 @@ export default function Pricing() {
               </Button>
             </Card>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

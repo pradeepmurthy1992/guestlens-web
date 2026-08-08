@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
@@ -16,9 +17,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-soft bg-bg/80 backdrop-blur-md">
       <Container className="flex h-20 items-center justify-between">
-        <a href="/" className="font-display text-xl tracking-tight text-ink">
+        <Link to="/" className="font-display text-xl tracking-tight text-ink">
           GuestLens
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-9 md:flex">
           {links.map((link) => (
@@ -33,10 +34,10 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button as="a" href="#" variant="ghost" size="md">
+          <Button as={Link} to="/login" variant="ghost" size="md">
             Log in
           </Button>
-          <Button as="a" href="#final-cta" variant="primary" size="md">
+          <Button as={Link} to="/create-event" variant="primary" size="md">
             Create your event
           </Button>
         </div>
@@ -65,10 +66,10 @@ export default function Navbar() {
               </a>
             ))}
             <div className="mt-2 flex flex-col gap-2 px-2">
-              <Button as="a" href="#" variant="secondary" size="md" className="w-full">
+              <Button as={Link} to="/login" variant="secondary" size="md" className="w-full">
                 Log in
               </Button>
-              <Button as="a" href="#final-cta" variant="primary" size="md" className="w-full">
+              <Button as={Link} to="/create-event" variant="primary" size="md" className="w-full">
                 Create your event
               </Button>
             </div>

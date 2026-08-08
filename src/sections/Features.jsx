@@ -2,6 +2,7 @@ import { Camera, Mic, Timer, Users, Download, Image as ImageIcon } from "lucide-
 import Container from "../components/ui/Container";
 import SectionHeading from "../components/ui/SectionHeading";
 import Card from "../components/ui/Card";
+import Reveal from "../components/ui/Reveal";
 
 const features = [
   {
@@ -46,12 +47,14 @@ export default function Features() {
   return (
     <section id="features" className="py-24 md:py-32">
       <Container className="flex flex-col gap-16">
-        <SectionHeading
-          eyebrow="Features"
-          title="Everything a wedding produces, kept in one place."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Features"
+            title="Everything a wedding produces, kept in one place."
+          />
+        </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <Card key={feature.title}>
               <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold">
@@ -61,7 +64,7 @@ export default function Features() {
               <p className="text-sm leading-relaxed text-muted">{feature.description}</p>
             </Card>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );
