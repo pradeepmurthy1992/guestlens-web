@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "../components/ui/Container";
 import Button from "../components/ui/Button";
 import Badge from "../components/ui/Badge";
+import TrustStats from "../components/ui/TrustStats";
 
 export default function Hero() {
   return (
@@ -38,6 +39,8 @@ export default function Hero() {
           <p className="text-xs text-muted-2">
             No app required for guests · Free to start
           </p>
+
+          <TrustStats />
         </div>
 
         <div className="relative mx-auto w-full max-w-sm">
