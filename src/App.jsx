@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
 import EventDetail from "./pages/EventDetail";
+import Gallery from "./pages/Gallery";
 import GuestUpload from "./pages/GuestUpload";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -41,6 +42,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <EventDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/events/:eventId/gallery"
+          element={
+            <ProtectedRoute>
+              <Gallery />
             </ProtectedRoute>
           }
         />

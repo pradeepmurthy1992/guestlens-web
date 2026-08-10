@@ -5,7 +5,7 @@ function extensionFor(file) {
   return parts.length > 1 ? parts.pop() : "bin";
 }
 
-export async function uploadEventFile({ eventId, file, type, uploaderName, message }) {
+export async function uploadEventFile({ eventId, file, type, uploaderName, message, isProfessional = false }) {
   const path = `${eventId}/${type}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extensionFor(file)}`;
 
   const { error: uploadError } = await supabase.storage.from("event-media").upload(path, file, {
@@ -20,6 +20,7 @@ export async function uploadEventFile({ eventId, file, type, uploaderName, messa
     storage_path: path,
     uploader_name: uploaderName || null,
     message: message || null,
+    is_professional: isProfessional,
   });
   if (insertError) throw insertError;
 }
@@ -41,6 +42,16 @@ export async function countEventMedia(eventId) {
     .eq("event_id", eventId);
   if (error) throw error;
   return count ?? 0;
+}
+
+export async function listEventMedia(eventId) {
+  const { data, error } = await supabase
+    .from("media")
+    .select("*")
+    .eq("event_id", eventId)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
 }
 
 export function publicMediaUrl(storagePath) {

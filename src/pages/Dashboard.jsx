@@ -1,22 +1,61 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Plus, Calendar, ExternalLink } from "lucide-react";
+import { Plus, Calendar, ExternalLink, Camera } from "lucide-react";
 import { useAuth } from "../lib/AuthContext";
-import { listMyEvents } from "../lib/eventService";
+import { listMyEvents, listInvitedEvents } from "../lib/eventService";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 
+function EventGrid({ events }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {events.map((event) => (
+        <Link key={event.id} to={`/events/${event.id}`}>
+          <Card>
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="font-display text-lg text-ink">
+                  {event.bride_name} &amp; {event.groom_name}
+                </h3>
+                <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-2">
+                  <Calendar size={12} />
+                  {new Date(event.wedding_date).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+              <span className="rounded-full bg-gold/10 px-3 py-1 text-[11px] font-medium capitalize text-gold">
+                {event.status}
+              </span>
+            </div>
+            <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-2">
+              <ExternalLink size={12} />
+              guestlens.app/{event.slug}
+            </p>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export default function Dashboard() {
   const { user } = useAuth();
   const [events, setEvents] = useState([]);
+  const [invitedEvents, setInvitedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!user) return;
-    listMyEvents(user.id)
-      .then(setEvents)
+    Promise.all([listMyEvents(user.id), listInvitedEvents(user.email)])
+      .then(([owned, invited]) => {
+        setEvents(owned);
+        setInvitedEvents(invited);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [user]);
@@ -50,36 +89,17 @@ export default function Dashboard() {
         </Card>
       )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
-          <Link key={event.id} to={`/events/${event.id}`}>
-            <Card>
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-display text-lg text-ink">
-                    {event.bride_name} &amp; {event.groom_name}
-                  </h3>
-                  <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-2">
-                    <Calendar size={12} />
-                    {new Date(event.wedding_date).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </p>
-                </div>
-                <span className="rounded-full bg-gold/10 px-3 py-1 text-[11px] font-medium capitalize text-gold">
-                  {event.status}
-                </span>
-              </div>
-              <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-2">
-                <ExternalLink size={12} />
-                guestlens.app/{event.slug}
-              </p>
-            </Card>
-          </Link>
-        ))}
-      </div>
+      {!loading && events.length > 0 && <EventGrid events={events} />}
+
+      {!loading && invitedEvents.length > 0 && (
+        <div className="mt-12">
+          <div className="mb-4 flex items-center gap-2">
+            <Camera size={16} className="text-gold" />
+            <h2 className="text-sm font-medium text-ink">Events you're photographing</h2>
+          </div>
+          <EventGrid events={invitedEvents} />
+        </div>
+      )}
     </DashboardLayout>
   );
 }

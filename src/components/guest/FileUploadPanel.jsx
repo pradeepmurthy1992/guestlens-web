@@ -3,7 +3,7 @@ import { Upload, Check } from "lucide-react";
 import Button from "../ui/Button";
 import { uploadEventFile } from "../../lib/mediaService";
 
-export default function FileUploadPanel({ eventId, type, accept, label, guestName }) {
+export default function FileUploadPanel({ eventId, type, accept, label, guestName, isProfessional = false }) {
   const inputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -24,7 +24,7 @@ export default function FileUploadPanel({ eventId, type, accept, label, guestNam
     setStatus("uploading");
     setError(null);
     try {
-      await uploadEventFile({ eventId, file, type, uploaderName: guestName });
+      await uploadEventFile({ eventId, file, type, uploaderName: guestName, isProfessional });
       setStatus("done");
     } catch (err) {
       setError(err.message);
