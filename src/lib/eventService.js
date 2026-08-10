@@ -41,3 +41,19 @@ export async function listMyEvents(ownerId) {
   if (error) throw error;
   return data;
 }
+
+export async function getEventById(eventId) {
+  const { data, error } = await supabase.from("events").select("*").eq("id", eventId).single();
+  if (error) throw error;
+  return data;
+}
+
+export async function getEventBySlug(slug) {
+  const { data, error } = await supabase.from("events").select("*").eq("slug", slug).single();
+  if (error) throw error;
+  return data;
+}
+
+export function guestUploadUrl(slug) {
+  return `${window.location.origin}/e/${slug}`;
+}

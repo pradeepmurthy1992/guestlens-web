@@ -52,30 +52,32 @@ export default function Dashboard() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
-          <Card key={event.id}>
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="font-display text-lg text-ink">
-                  {event.bride_name} &amp; {event.groom_name}
-                </h3>
-                <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-2">
-                  <Calendar size={12} />
-                  {new Date(event.wedding_date).toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
+          <Link key={event.id} to={`/events/${event.id}`}>
+            <Card>
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="font-display text-lg text-ink">
+                    {event.bride_name} &amp; {event.groom_name}
+                  </h3>
+                  <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-2">
+                    <Calendar size={12} />
+                    {new Date(event.wedding_date).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+                <span className="rounded-full bg-gold/10 px-3 py-1 text-[11px] font-medium capitalize text-gold">
+                  {event.status}
+                </span>
               </div>
-              <span className="rounded-full bg-gold/10 px-3 py-1 text-[11px] font-medium capitalize text-gold">
-                {event.status}
-              </span>
-            </div>
-            <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-2">
-              <ExternalLink size={12} />
-              guestlens.app/{event.slug}
-            </p>
-          </Card>
+              <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-2">
+                <ExternalLink size={12} />
+                guestlens.app/{event.slug}
+              </p>
+            </Card>
+          </Link>
         ))}
       </div>
     </DashboardLayout>

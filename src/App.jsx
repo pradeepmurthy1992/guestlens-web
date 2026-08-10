@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
+import EventDetail from "./pages/EventDetail";
+import GuestUpload from "./pages/GuestUpload";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -17,6 +19,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/e/:slug" element={<GuestUpload />} />
         <Route
           path="/dashboard"
           element={
@@ -30,6 +33,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <CreateEvent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/events/:eventId"
+          element={
+            <ProtectedRoute>
+              <EventDetail />
             </ProtectedRoute>
           }
         />
