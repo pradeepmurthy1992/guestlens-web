@@ -58,6 +58,13 @@ export function guestUploadUrl(slug) {
   return `${window.location.origin}/e/${slug}`;
 }
 
+export function isRevealed(event) {
+  if (!event.reveal_date) return true;
+  const today = new Date();
+  const reveal = new Date(event.reveal_date);
+  return today.setHours(0, 0, 0, 0) >= reveal.setHours(0, 0, 0, 0);
+}
+
 export async function listInvitedEvents(email) {
   const { data, error } = await supabase
     .from("event_collaborators")

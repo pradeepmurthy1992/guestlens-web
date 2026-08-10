@@ -64,6 +64,9 @@ export default function GuestUpload() {
               day: "numeric",
             })}
           </p>
+          <Link to={`/e/${slug}/gallery`} className="mt-2 inline-block text-sm text-gold hover:underline">
+            View the gallery →
+          </Link>
         </div>
 
         <Card>

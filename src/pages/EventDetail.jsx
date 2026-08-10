@@ -168,10 +168,26 @@ export default function EventDetail() {
           </Card>
         </div>
       ) : (
-        <Card className="mx-auto max-w-lg">
-          <h2 className="mb-1 text-sm font-medium text-ink">Upload professional deliverables</h2>
-          <ProUploadPanel eventId={eventId} />
-        </Card>
+        <div className="mx-auto flex max-w-lg flex-col gap-6">
+          <Link to={`/events/${eventId}/gallery`}>
+            <Card className="flex items-center gap-4 hover:border-gold-dim">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+                {event.reveal_date ? <Lock size={18} /> : <Images size={18} />}
+              </span>
+              <div>
+                <p className="text-sm font-medium text-ink">View gallery</p>
+                <p className="text-xs text-muted-2">
+                  {event.reveal_date ? "Locked until reveal" : "Open now"}
+                </p>
+              </div>
+            </Card>
+          </Link>
+
+          <Card>
+            <h2 className="mb-1 text-sm font-medium text-ink">Upload professional deliverables</h2>
+            <ProUploadPanel eventId={eventId} />
+          </Card>
+        </div>
       )}
     </DashboardLayout>
   );
