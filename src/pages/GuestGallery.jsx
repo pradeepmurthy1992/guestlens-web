@@ -59,7 +59,7 @@ export default function GuestGallery() {
           </Link>
         </div>
 
-        <GalleryContent event={event} media={media} />
+        <GalleryContent event={event} media={media} locked={!isRevealed(event)} />
       </Container>
     </div>
   );

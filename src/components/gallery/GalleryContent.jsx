@@ -1,18 +1,17 @@
 import { Lock } from "lucide-react";
-import { isRevealed } from "../../lib/eventService";
 import Card from "../ui/Card";
 import Countdown from "../ui/Countdown";
 import MediaTile from "./MediaTile";
 
-export default function GalleryContent({ event, media }) {
-  if (!isRevealed(event)) {
+export default function GalleryContent({ event, media, locked }) {
+  if (locked) {
     return (
       <Card className="mt-8 flex flex-col items-center gap-4 py-16 text-center">
         <Lock size={22} className="text-gold" />
-        <p className="text-ink">The gallery is still locked</p>
+        <p className="text-ink">The gallery is still locked for guests</p>
         <p className="max-w-sm text-sm text-muted">
-          Photos, videos and wishes are being collected in the background. Everything unlocks
-          on the reveal date —{" "}
+          Photos, videos and wishes are being collected in the background. It unlocks for
+          guests on the reveal date —{" "}
           {new Date(event.reveal_date).toLocaleDateString(undefined, {
             year: "numeric",
             month: "long",

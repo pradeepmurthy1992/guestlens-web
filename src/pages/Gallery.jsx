@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { getEventById, isRevealed } from "../lib/eventService";
+import { getEventById } from "../lib/eventService";
 import { listEventMedia } from "../lib/mediaService";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import GalleryContent from "../components/gallery/GalleryContent";
@@ -14,12 +14,10 @@ export default function Gallery() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getEventById(eventId)
-      .then(async (eventData) => {
+    Promise.all([getEventById(eventId), listEventMedia(eventId)])
+      .then(([eventData, mediaData]) => {
         setEvent(eventData);
-        if (isRevealed(eventData)) {
-          setMedia(await listEventMedia(eventId));
-        }
+        setMedia(mediaData);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -54,8 +52,14 @@ export default function Gallery() {
       <h1 className="font-display text-2xl text-ink">
         {event.bride_name} &amp; {event.groom_name}'s gallery
       </h1>
+      <p className="mt-1 text-xs text-muted-2">
+        You always see everything here — the reveal date only locks this for guests.
+      </p>
 
-      <GalleryContent event={event} media={media} />
+      {/* Owner/collaborator access is never reveal-gated - the database
+          permissions already reflect this (is_event_owner / is_event_collaborator
+          policies carry no date check), so the page never locks here either. */}
+      <GalleryContent event={event} media={media} locked={false} />
     </DashboardLayout>
   );
 }

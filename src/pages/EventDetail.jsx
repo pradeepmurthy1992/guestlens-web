@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
-import { Copy, Download, Check, ArrowLeft, ImageIcon, Images, Lock } from "lucide-react";
+import { Copy, Download, Check, ArrowLeft, ImageIcon, Images, Mail } from "lucide-react";
 import { getEventById, guestUploadUrl } from "../lib/eventService";
 import { countEventMedia } from "../lib/mediaService";
 import { useAuth } from "../lib/AuthContext";
@@ -11,6 +11,22 @@ import Button from "../components/ui/Button";
 import CollaboratorsPanel from "../components/collaborator/CollaboratorsPanel";
 import ProUploadPanel from "../components/collaborator/ProUploadPanel";
 
+function GalleryPreviewCard({ eventId }) {
+  return (
+    <Link to={`/events/${eventId}/gallery`}>
+      <Card className="flex h-full items-center gap-4 hover:border-gold-dim">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+          <Images size={18} />
+        </span>
+        <div>
+          <p className="text-sm font-medium text-ink">View gallery</p>
+          <p className="text-xs text-muted-2">Open now — always visible to you</p>
+        </div>
+      </Card>
+    </Link>
+  );
+}
+
 export default function EventDetail() {
   const { eventId } = useParams();
   const { user } = useAuth();
@@ -19,6 +35,7 @@ export default function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [showUpgradeInfo, setShowUpgradeInfo] = useState(false);
   const qrRef = useRef(null);
 
   useEffect(() => {
@@ -84,6 +101,7 @@ export default function EventDetail() {
             day: "numeric",
           })}
           {!isOwner && " · You have photographer access to this event"}
+          {isOwner && event.reveal_date && " · Guests can view the gallery once revealed"}
         </p>
       </div>
 
@@ -114,19 +132,7 @@ export default function EventDetail() {
                 </div>
               </Card>
 
-              <Link to={`/events/${eventId}/gallery`}>
-                <Card className="flex h-full items-center gap-4 hover:border-gold-dim">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
-                    {event.reveal_date ? <Lock size={18} /> : <Images size={18} />}
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-ink">View gallery</p>
-                    <p className="text-xs text-muted-2">
-                      {event.reveal_date ? "Locked until reveal" : "Open now"}
-                    </p>
-                  </div>
-                </Card>
-              </Link>
+              <GalleryPreviewCard eventId={eventId} />
             </div>
 
             <Card>
@@ -139,19 +145,37 @@ export default function EventDetail() {
               <ProUploadPanel eventId={eventId} />
             </Card>
 
-            <Card className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-ink capitalize">{event.plan} plan</p>
-                <p className="text-xs text-muted-2">
-                  {event.plan === "free"
-                    ? "Upgrade for unlimited storage and no watermark"
-                    : "Thanks for being on Wedding Premium"}
-                </p>
+            <Card>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-ink capitalize">{event.plan} plan</p>
+                  <p className="text-xs text-muted-2">
+                    {event.plan === "free"
+                      ? "Upgrade for unlimited storage and no watermark"
+                      : "Thanks for being on Wedding Premium"}
+                  </p>
+                </div>
+                {event.plan === "free" && (
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    onClick={() => setShowUpgradeInfo((v) => !v)}
+                  >
+                    Upgrade
+                  </Button>
+                )}
               </div>
-              {event.plan === "free" && (
-                <Button variant="secondary" size="md" disabled title="Payments coming soon">
-                  Upgrade
-                </Button>
+              {showUpgradeInfo && (
+                <div className="mt-4 flex items-start gap-2 rounded-xl border border-border-soft bg-bg px-4 py-3 text-xs text-muted">
+                  <Mail size={14} className="mt-0.5 shrink-0 text-gold" />
+                  <p>
+                    Online payment isn't live yet — email{" "}
+                    <a href="mailto:hello@iniyakadhai.com?subject=Upgrade%20to%20Wedding%20Premium" className="text-ink underline">
+                      hello@iniyakadhai.com
+                    </a>{" "}
+                    and we'll arrange your upgrade manually.
+                  </p>
+                </div>
               )}
             </Card>
           </div>
@@ -169,19 +193,7 @@ export default function EventDetail() {
         </div>
       ) : (
         <div className="mx-auto flex max-w-lg flex-col gap-6">
-          <Link to={`/events/${eventId}/gallery`}>
-            <Card className="flex items-center gap-4 hover:border-gold-dim">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
-                {event.reveal_date ? <Lock size={18} /> : <Images size={18} />}
-              </span>
-              <div>
-                <p className="text-sm font-medium text-ink">View gallery</p>
-                <p className="text-xs text-muted-2">
-                  {event.reveal_date ? "Locked until reveal" : "Open now"}
-                </p>
-              </div>
-            </Card>
-          </Link>
+          <GalleryPreviewCard eventId={eventId} />
 
           <Card>
             <h2 className="mb-1 text-sm font-medium text-ink">Upload professional deliverables</h2>
