@@ -22,15 +22,26 @@ npm run build
 Copy `.env.example` to `.env` and fill in your Supabase project's URL and
 anon/publishable key.
 
-## Deploying (Vercel)
+## Deploying (GitHub Pages)
 
-1. Import this repo at [vercel.com/new](https://vercel.com/new) — Vercel
-   auto-detects the Vite framework preset, no build config needed.
-2. Add two environment variables in the Vercel project settings:
+Deploys automatically via `.github/workflows/deploy.yml` on every push to
+`main`. One-time setup:
+
+1. **Settings → Pages → Build and deployment → Source → "GitHub Actions"**
+2. **Settings → Secrets and variables → Actions → New repository secret** —
+   add both:
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
-3. Deploy. `vercel.json` in this repo handles the SPA rewrite so client-side
-   routes (`/dashboard`, `/e/:slug`, etc.) work on direct load and refresh.
+3. **In Supabase** (Authentication → URL Configuration), add
+   `https://<username>.github.io/guestlens-web/**` to Redirect URLs, or the
+   magic-link login won't redirect back correctly in production.
+4. Push to `main` (or re-run the workflow manually) — the site publishes to
+   `https://<username>.github.io/guestlens-web/`.
+
+Because GitHub Pages serves static files with no server-side rewrites, the
+app uses `HashRouter` (URLs look like `.../#/dashboard`) instead of
+`BrowserRouter` — that's what makes client-side routing work without any
+server config.
 
 ## Database
 

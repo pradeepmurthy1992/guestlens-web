@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "./supabase";
+import { appUrl } from "./eventService";
 
 const AuthContext = createContext(undefined);
 
@@ -27,7 +28,7 @@ export function AuthProvider({ children }) {
     signInWithEmail: (email) =>
       supabase.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: window.location.origin + "/dashboard" },
+        options: { emailRedirectTo: appUrl("/dashboard") },
       }),
     signOut: () => supabase.auth.signOut(),
   };

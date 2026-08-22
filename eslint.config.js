@@ -7,6 +7,7 @@ export default [
   { ignores: ["dist"] },
   {
     files: ["**/*.{js,jsx}"],
+    ignores: ["*.config.js"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -29,5 +30,14 @@ export default [
       ],
       "no-unused-vars": ["warn", { varsIgnorePattern: "^[A-Z_]" }],
     },
+  },
+  {
+    files: ["*.config.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: globals.node,
+    },
+    rules: js.configs.recommended.rules,
   },
 ];
