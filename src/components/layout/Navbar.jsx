@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border-soft bg-bg/80 backdrop-blur-md">
       <Container className="flex h-20 items-center justify-between">
         <Link to="/" className="font-display text-xl tracking-tight text-ink">
-          GuestLens
+          Iniya Kadhai
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">

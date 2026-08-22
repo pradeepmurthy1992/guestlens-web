@@ -61,7 +61,7 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <h1 className="mb-2 font-display text-xl text-ink">Log in to GuestLens</h1>
+      <h1 className="mb-2 font-display text-xl text-ink">Log in to Iniya Kadhai</h1>
       <p className="mb-6 text-sm text-muted">Continue with Google, or use a sign-in link.</p>
 
       <Button type="button" variant="secondary" className="w-full" onClick={handleGoogle}>

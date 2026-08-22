@@ -8,7 +8,7 @@ const steps = [
     icon: QrCode,
     title: "Create your event, share a QR",
     description:
-      "Set your names, wedding date and a reveal date. GuestLens generates a private gallery and a QR code to print or share.",
+      "Set your names, wedding date and a reveal date. Iniya Kadhai generates a private gallery and a QR code to print or share.",
   },
   {
     icon: Upload,

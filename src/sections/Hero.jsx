@@ -48,7 +48,7 @@ export default function Hero() {
             <div className="flex items-center justify-between border-b border-border-soft pb-4">
               <div>
                 <p className="font-display text-lg text-ink">Priya &amp; Akash</p>
-                <p className="text-xs text-muted-2">14 Feb 2027 · guestlens.app/priya-akash</p>
+                <p className="text-xs text-muted-2">14 Feb 2027 · iniyakadhai.com/priya-akash</p>
               </div>
               <span className="rounded-full bg-gold/10 px-3 py-1 text-[11px] font-medium text-gold">
                 Live

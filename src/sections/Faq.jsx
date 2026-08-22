@@ -10,7 +10,7 @@ const faqs = [
     a: "No. Guests scan the QR code and upload straight from their phone's browser. No app, no sign-up.",
   },
   {
-    q: "Can our photographer use GuestLens too?",
+    q: "Can our photographer use Iniya Kadhai too?",
     a: "Yes — photographers get their own login to upload the professional album, teasers and highlights into the same event guests are contributing to.",
   },
   {

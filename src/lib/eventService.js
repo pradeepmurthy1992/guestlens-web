@@ -55,7 +55,8 @@ export async function getEventBySlug(slug) {
 }
 
 // Builds an absolute URL to a client-side route, respecting both the
-// Vite base path (e.g. "/guestlens-web/" on GitHub Pages) and hash routing.
+// Vite base path (only non-"/" if ever deployed off a subpath again) and
+// hash routing.
 export function appUrl(path) {
   return `${window.location.origin}${import.meta.env.BASE_URL}#${path}`;
 }

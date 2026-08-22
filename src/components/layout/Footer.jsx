@@ -8,14 +8,14 @@ const columns = [
       { label: "How it works", href: "/#how-it-works" },
       { label: "Features", href: "/#features" },
       { label: "Pricing", href: "/#pricing" },
-      { label: "For photographers", href: "mailto:hello@guestlens.app" },
+      { label: "For photographers", href: "mailto:hello@iniyakadhai.com" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "/#how-it-works" },
-      { label: "Contact", href: "mailto:hello@guestlens.app" },
+      { label: "Contact", href: "mailto:hello@iniyakadhai.com" },
     ],
   },
   {
@@ -32,7 +32,7 @@ export default function Footer() {
     <footer className="border-t border-border-soft">
       <Container className="grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div className="flex flex-col gap-4">
-          <span className="font-display text-xl text-ink">GuestLens</span>
+          <span className="font-display text-xl text-ink">Iniya Kadhai</span>
           <p className="max-w-xs text-sm leading-relaxed text-muted">
             The wedding memory platform for couples and photographers.
           </p>
@@ -67,7 +67,7 @@ export default function Footer() {
       </Container>
 
       <Container className="flex flex-col gap-2 border-t border-border-soft py-6 text-xs text-muted-2 md:flex-row md:items-center md:justify-between">
-        <span>© {new Date().getFullYear()} GuestLens. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Iniya Kadhai. All rights reserved.</span>
         <span>Made for couples, guests, and the photographers who capture them.</span>
       </Container>
     </footer>

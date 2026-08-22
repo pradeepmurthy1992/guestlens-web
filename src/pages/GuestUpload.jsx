@@ -43,7 +43,7 @@ export default function GuestUpload() {
       <div className="flex min-h-screen flex-col items-center justify-center gap-3 px-6 text-center">
         <p className="text-ink">This event doesn't exist or isn't live yet.</p>
         <Link to="/" className="text-sm text-gold hover:underline">
-          Back to GuestLens
+          Back to Iniya Kadhai
         </Link>
       </div>
     );
@@ -53,7 +53,7 @@ export default function GuestUpload() {
     <div className="min-h-screen py-12 md:py-20">
       <Container className="max-w-lg">
         <div className="mb-8 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold">GuestLens</p>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold">Iniya Kadhai</p>
           <h1 className="mt-3 font-display text-3xl text-ink">
             {event.bride_name} &amp; {event.groom_name}
           </h1>

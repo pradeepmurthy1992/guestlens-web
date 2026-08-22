@@ -17,7 +17,7 @@ export default function TrustStats() {
     <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
       <span className="flex items-center gap-2">
         <Heart size={14} className="text-gold" />
-        {stats.eventCount} {stats.eventCount === 1 ? "wedding" : "weddings"} on GuestLens
+        {stats.eventCount} {stats.eventCount === 1 ? "wedding" : "weddings"} on Iniya Kadhai
       </span>
       <span className="flex items-center gap-2">
         <Images size={14} className="text-gold" />

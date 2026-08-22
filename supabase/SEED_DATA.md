@@ -1,11 +1,13 @@
 # Seed data — remove before launch
 
-The landing page shows a live trust-stats bar ("N weddings on GuestLens · N
-memories collected"), pulled from `get_platform_stats()`. It hides itself
-automatically once the event count is 0, so there's nothing to toggle in code.
+The landing page shows a live trust-stats bar ("N weddings on Iniya Kadhai
+· N memories collected"), pulled from `get_platform_stats()`. It hides
+itself automatically once the event count is 0, so there's nothing to
+toggle in code.
 
-Right now the count is non-zero because of one clearly-labeled demo event,
-inserted directly in Supabase (not through the app):
+A demo event was previously seeded (and later deleted) to keep this
+non-zero during early testing. If seeding one again, insert it directly in
+Supabase (not through the app), find it the same way:
 
 ```sql
 select id, slug, bride_name, groom_name from public.events

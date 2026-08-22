@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <StaticPage title="Privacy Policy" updated="22 August 2026">
       <p>
-        GuestLens ("we", "us") runs guestlens.app, a platform for collecting wedding photos,
+        Iniya Kadhai ("we", "us") runs iniyakadhai.com, a platform for collecting wedding photos,
         videos, voice messages and text wishes into a private gallery. This policy explains what
         we collect, why, and how you're in control of it.
       </p>
@@ -29,7 +29,7 @@ export default function Privacy() {
           invite to an event.
         </li>
       </ul>
-      <p>We don't currently use analytics or advertising trackers on GuestLens.</p>
+      <p>We don't currently use analytics or advertising trackers on Iniya Kadhai.</p>
 
       <h2>How we use it</h2>
       <p>
@@ -71,7 +71,7 @@ export default function Privacy() {
 
       <h2>Children's data</h2>
       <p>
-        GuestLens is intended for use by adults planning or attending a wedding. We don't
+        Iniya Kadhai is intended for use by adults planning or attending a wedding. We don't
         knowingly collect account information from children. Photos or videos that happen to
         include children (as is common at weddings) are handled the same as any other guest
         upload, under the access controls described above.
@@ -80,14 +80,14 @@ export default function Privacy() {
       <h2>Changes to this policy</h2>
       <p>
         If this policy changes materially, we'll update the date at the top of this page. Continued
-        use of GuestLens after a change means you accept the updated policy.
+        use of Iniya Kadhai after a change means you accept the updated policy.
       </p>
 
       <h2>Contact</h2>
       <p>
         Questions, requests, or concerns —{" "}
-        <a href="mailto:hello@guestlens.app" className="text-ink underline">
-          hello@guestlens.app
+        <a href="mailto:hello@iniyakadhai.com" className="text-ink underline">
+          hello@iniyakadhai.com
         </a>
         .
       </p>

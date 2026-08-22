@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
       <header className="border-b border-border-soft">
         <Container className="flex h-20 items-center justify-between">
           <Link to="/dashboard" className="font-display text-xl text-ink">
-            GuestLens
+            Iniya Kadhai
           </Link>
           <div className="flex items-center gap-4">
             <span className="hidden text-sm text-muted sm:inline">{user?.email}</span>

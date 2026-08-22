@@ -12,7 +12,7 @@ const plans = [
     price: "₹0",
     period: "",
     description: "See how it feels before your wedding day.",
-    features: ["1 event", "Up to 200 photos", "30 days of storage", "GuestLens watermark"],
+    features: ["1 event", "Up to 200 photos", "30 days of storage", "Iniya Kadhai watermark"],
     cta: "Start for free",
     to: "/create-event",
     variant: "secondary",
@@ -46,7 +46,7 @@ const plans = [
       "Event analytics",
     ],
     cta: "Talk to us",
-    href: "mailto:hello@guestlens.app",
+    href: "mailto:hello@iniyakadhai.com",
     variant: "secondary",
   },
 ];

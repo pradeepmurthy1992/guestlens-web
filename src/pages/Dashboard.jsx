@@ -33,7 +33,7 @@ function EventGrid({ events }) {
             </div>
             <p className="mt-4 flex items-center gap-1.5 text-xs text-muted-2">
               <ExternalLink size={12} />
-              guestlens.app/{event.slug}
+              iniyakadhai.com/{event.slug}
             </p>
           </Card>
         </Link>

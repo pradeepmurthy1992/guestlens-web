@@ -34,7 +34,9 @@ jobs:
 
       - run: npm run build
         env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # Served from the iniyakadhai.com apex via CNAME (see public/CNAME),
+          # so the app lives at "/", not a "/<repo-name>/" subpath.
+          VITE_BASE_PATH: /
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
