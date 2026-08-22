@@ -30,6 +30,11 @@ export function AuthProvider({ children }) {
         email,
         options: { emailRedirectTo: appUrl("/dashboard") },
       }),
+    signInWithGoogle: () =>
+      supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: appUrl("/dashboard") },
+      }),
     signOut: () => supabase.auth.signOut(),
   };
 

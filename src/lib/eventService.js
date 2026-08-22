@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 
-function slugify(brideName, groomName) {
+export function slugify(brideName, groomName) {
   const base = `${brideName}-${groomName}`
     .toLowerCase()
     .trim()
